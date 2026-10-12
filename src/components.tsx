@@ -113,6 +113,8 @@ export function SpellingHints({
   const parts = word.split(" ");
   const [revealed, setRevealed] = useState(() => parts.map(() => 1));
   const nextPart = parts.findIndex((part, i) => revealed[i] < part.length);
+  const hintsUsed = revealed.reduce((sum, count) => sum + count - 1, 0);
+  const hintsLeft = Math.max(0, 2 - hintsUsed);
   return (
     <div className="notice spelling-hints">
       <p>
@@ -151,14 +153,19 @@ export function SpellingHints({
         Listen, then tap the letters in order.
         先聽發音，再依序點選字母。需要幫忙時，可以多看一個字母。
       </p>
+      <p aria-live="polite">
+        Hints left 剩餘提示次數：{hintsLeft} / 2（每題最多兩次）
+      </p>
       <div className="actions">
         <Audio text={word} label="Listen to the word 聽單字發音" />
         <button
           type="button"
           className="stone"
-          disabled={nextPart < 0}
+          disabled={nextPart < 0 || hintsLeft === 0}
           onClick={() =>
             setRevealed((counts) => {
+              if (counts.reduce((sum, count) => sum + count - 1, 0) >= 2)
+                return counts;
               const next = parts.findIndex(
                 (part, i) => counts[i] < part.length,
               );
@@ -168,7 +175,9 @@ export function SpellingHints({
         >
           {nextPart < 0
             ? "All letters shown 全部字母已顯示"
-            : "Show next letter 顯示下一個字母"}
+            : hintsLeft === 0
+              ? "Hints used up 提示次數已用完"
+              : "Show next letter 顯示下一個字母"}
         </button>
       </div>
     </div>
