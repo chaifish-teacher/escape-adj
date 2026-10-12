@@ -11,26 +11,14 @@ export function Audio({
   text: string;
   label?: string;
 }) {
-  const [fallback, setFallback] = useState(false);
   return (
-    <>
-      <button
-        className="audio"
-        onClick={() => speak(text, () => setFallback(true))}
-      >
-        <Volume2 size={18} />
-        {label}
-      </button>
-      {fallback && (
-        <p className="muted">
-          Audio unavailable. Read: {text}
-          <br />
-          語音無法使用，請閱讀文字。
-        </p>
-      )}
-    </>
+    <button className="audio" onClick={() => speak(text)}>
+      <Volume2 size={18} />
+      {label}
+    </button>
   );
 }
+
 export function Leaderboard({ refresh = 0 }: { refresh?: number }) {
   const [rows, setRows] = useState<Leader[]>([]),
     [status, setStatus] = useState("Loading… 載入中");

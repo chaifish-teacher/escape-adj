@@ -179,7 +179,7 @@ test("audio unavailable remains playable and music can be toggled", async ({
   await page.getByLabel("What should we call you?").fill("Audio Hero");
   await page.getByRole("button", { name: "START ADVENTURE" }).click();
   await page.getByRole("button", { name: "Listen to word 單字發音" }).click();
-  await expect(page.getByText(/Audio unavailable. Read:/)).toBeVisible();
+  await expect(page.getByText(/Audio unavailable. Read:/)).toHaveCount(0);
   await page.getByRole("button", { name: /I'm ready/ }).click();
   await expect(
     page.getByRole("heading", { name: /Know your words/ }),
