@@ -1,0 +1,1130 @@
+[
+  {
+    "slide": 1,
+    "text": [],
+    "pictures": []
+  },
+  {
+    "slide": 2,
+    "text": [
+      "Vocabulary Review",
+      "Match the sentences to the pictures.",
+      "She has long hair.",
+      "She has short hair.",
+      "She’s tall.",
+      "She’s short.",
+      "He’s young."
+    ],
+    "pictures": [
+      {
+        "file": "image5.png",
+        "position": {
+          "x": "7522552",
+          "y": "3584675"
+        },
+        "size": {
+          "cx": "595432",
+          "cy": "2167712"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image6.png",
+        "position": {
+          "x": "1696946",
+          "y": "3153156"
+        },
+        "size": {
+          "cx": "706165",
+          "cy": "1843387"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image7.png",
+        "position": {
+          "x": "7041382",
+          "y": "1979739"
+        },
+        "size": {
+          "cx": "1085711",
+          "cy": "1043190"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image8.png",
+        "position": {
+          "x": "971886",
+          "y": "5024846"
+        },
+        "size": {
+          "cx": "991954",
+          "cy": "1068024"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image9.png",
+        "position": {
+          "x": "945424",
+          "y": "1828799"
+        },
+        "size": {
+          "cx": "573253",
+          "cy": "1184183"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 3,
+    "text": [
+      "Vocabulary Review",
+      "Match the sentences to the pictures.",
+      "He has curly hair.",
+      "She has straight hair.",
+      "She has blonde hair.",
+      "He has a beard. ",
+      "She is slim. "
+    ],
+    "pictures": [
+      {
+        "file": "image10.png",
+        "position": {
+          "x": "1206754",
+          "y": "2173763"
+        },
+        "size": {
+          "cx": "732994",
+          "cy": "2156447"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image11.png",
+        "position": {
+          "x": "7095345",
+          "y": "3528174"
+        },
+        "size": {
+          "cx": "1216291",
+          "cy": "906724"
+        },
+        "cropPercent1000": {
+          "l": "30013",
+          "t": "-423",
+          "r": "3793",
+          "b": "80885"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image12.png",
+        "position": {
+          "x": "7388038",
+          "y": "2028395"
+        },
+        "size": {
+          "cx": "1568791",
+          "cy": "878826"
+        },
+        "cropPercent1000": {
+          "l": "-1388",
+          "t": "21",
+          "r": "1388",
+          "b": "77625"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image13.png",
+        "position": {
+          "x": "7216202",
+          "y": "5022761"
+        },
+        "size": {
+          "cx": "928669",
+          "cy": "1070064"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image14.png",
+        "position": {
+          "x": "832384",
+          "y": "5087155"
+        },
+        "size": {
+          "cx": "999802",
+          "cy": "1005670"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 4,
+    "text": [
+      "He’s elderly.",
+      "He’s bald.",
+      "He has dark hair. ",
+      "Vocabulary Review",
+      "Match the sentences to the pictures.",
+      "He has a moustache. "
+    ],
+    "pictures": [
+      {
+        "file": "image15.png",
+        "position": {
+          "x": "6978316",
+          "y": "3999224"
+        },
+        "size": {
+          "cx": "1294531",
+          "cy": "1780112"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image16.png",
+        "position": {
+          "x": "813400",
+          "y": "4454225"
+        },
+        "size": {
+          "cx": "1357993",
+          "cy": "1003332"
+        },
+        "cropPercent1000": {
+          "l": "2472",
+          "t": "-985",
+          "r": "-2472",
+          "b": "78685"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image17.png",
+        "position": {
+          "x": "6642166",
+          "y": "1988956"
+        },
+        "size": {
+          "cx": "1357994",
+          "cy": "1074869"
+        },
+        "cropPercent1000": {
+          "l": "4988",
+          "t": "-211",
+          "r": "-4988",
+          "b": "76512"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image18.png",
+        "position": {
+          "x": "1022820",
+          "y": "1928288"
+        },
+        "size": {
+          "cx": "1385381",
+          "cy": "1116287"
+        },
+        "cropPercent1000": {
+          "l": "987",
+          "t": "-779",
+          "r": "41629",
+          "b": "56484"
+        },
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 5,
+    "text": [
+      "Vocabulary Review",
+      "Do you know these words? ",
+      "shoes",
+      "cap",
+      "hat",
+      "jacket",
+      "trousers",
+      "glasses",
+      "scarf",
+      "jumper",
+      "handbag",
+      "gloves"
+    ],
+    "pictures": [
+      {
+        "file": "image19.png",
+        "position": {
+          "x": "2510898",
+          "y": "4608199"
+        },
+        "size": {
+          "cx": "1219101",
+          "cy": "1605887"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image20.png",
+        "position": {
+          "x": "4135167",
+          "y": "3922595"
+        },
+        "size": {
+          "cx": "1366110",
+          "cy": "1355284"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image21.png",
+        "position": {
+          "x": "2731493",
+          "y": "2916978"
+        },
+        "size": {
+          "cx": "1426677",
+          "cy": "1299482"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image22.png",
+        "position": {
+          "x": "872196",
+          "y": "3672067"
+        },
+        "size": {
+          "cx": "1336644",
+          "cy": "1541888"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image23.png",
+        "position": {
+          "x": "7166659",
+          "y": "3333533"
+        },
+        "size": {
+          "cx": "1295099",
+          "cy": "1566461"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image24.png",
+        "position": {
+          "x": "6558786",
+          "y": "1793513"
+        },
+        "size": {
+          "cx": "1215744",
+          "cy": "1574139"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image25.png",
+        "position": {
+          "x": "2457542",
+          "y": "1907200"
+        },
+        "size": {
+          "cx": "2184677",
+          "cy": "602553"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image26.png",
+        "position": {
+          "x": "4711720",
+          "y": "2472565"
+        },
+        "size": {
+          "cx": "2005052",
+          "cy": "1528171"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image27.png",
+        "position": {
+          "x": "5519811",
+          "y": "4726651"
+        },
+        "size": {
+          "cx": "1825881",
+          "cy": "1528171"
+        },
+        "cropPercent1000": {
+          "t": "20427",
+          "b": "20428"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image28.png",
+        "position": {
+          "x": "740875",
+          "y": "2472565"
+        },
+        "size": {
+          "cx": "1836105",
+          "cy": "858491"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 6,
+    "text": [
+      "Teacher: ",
+      "Set your timer.",
+      "You have ",
+      "13 minutes ",
+      "to escape the tower",
+      "."
+    ],
+    "pictures": []
+  },
+  {
+    "slide": 7,
+    "text": [
+      "Oh no! You’re at the top of a tall, tall tower...",
+      "To escape, you’ll need to get past four monsters.",
+      "Each monster has a different task. ",
+      "The answer to each task will give you one of the four digits of the code you need to escape the tower.",
+      "Complete all the tasks",
+      "correctly to get the right code!",
+      "1.",
+      "2.",
+      "3.",
+      "4."
+    ],
+    "pictures": [
+      {
+        "file": "image29.png",
+        "position": {
+          "x": "6416842",
+          "y": "1268680"
+        },
+        "size": {
+          "cx": "2727158",
+          "cy": "5589320"
+        },
+        "cropPercent1000": {
+          "l": "15488",
+          "r": "49999"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image30.png",
+        "position": {
+          "x": "5275897",
+          "y": "2667851"
+        },
+        "size": {
+          "cx": "1594654",
+          "cy": "1822888"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image31.png",
+        "position": {
+          "x": "4232791",
+          "y": "4113443"
+        },
+        "size": {
+          "cx": "1537267",
+          "cy": "1724488"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image32.png",
+        "position": {
+          "x": "5782550",
+          "y": "4804935"
+        },
+        "size": {
+          "cx": "1268583",
+          "cy": "2002265"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image33.png",
+        "position": {
+          "x": "2179914",
+          "y": "5339245"
+        },
+        "size": {
+          "cx": "2247706",
+          "cy": "1469885"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 8,
+    "text": [
+      "The First Monster ",
+      "Who am I describing? The number of the correct",
+      "picture is the first digit of the code.",
+      "He's tall and has short brown hair. He's wearing blue jeans, a shirt and brown shoes. He doesn't have a moustache or a beard.",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "Reveal Answer",
+      "3"
+    ],
+    "pictures": [
+      {
+        "file": "image34.png",
+        "position": {
+          "x": "7404173",
+          "y": "3284351"
+        },
+        "size": {
+          "cx": "1751617",
+          "cy": "3589944"
+        },
+        "cropPercent1000": {
+          "l": "15993",
+          "t": "-335",
+          "r": "49489",
+          "b": "335"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image35.png",
+        "position": {
+          "x": "525632",
+          "y": "765175"
+        },
+        "size": {
+          "cx": "1933967",
+          "cy": "2210765"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image36.png",
+        "position": {
+          "x": "755650",
+          "y": "3606270"
+        },
+        "size": {
+          "cx": "778713",
+          "cy": "2600274"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image37.png",
+        "position": {
+          "x": "1842940",
+          "y": "3618481"
+        },
+        "size": {
+          "cx": "737502",
+          "cy": "2600464"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image38.png",
+        "position": {
+          "x": "2888401",
+          "y": "3548263"
+        },
+        "size": {
+          "cx": "886845",
+          "cy": "2699244"
+        },
+        "cropPercent1000": {
+          "l": "40772",
+          "r": "40771"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image39.png",
+        "position": {
+          "x": "3940146",
+          "y": "3613174"
+        },
+        "size": {
+          "cx": "745533",
+          "cy": "2600464"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image40.png",
+        "position": {
+          "x": "4947732",
+          "y": "3630107"
+        },
+        "size": {
+          "cx": "1048135",
+          "cy": "2600465"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image41.png",
+        "position": {
+          "x": "6124276",
+          "y": "3531328"
+        },
+        "size": {
+          "cx": "886845",
+          "cy": "2699244"
+        },
+        "cropPercent1000": {
+          "l": "40772",
+          "r": "40771"
+        },
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 9,
+    "text": [
+      "Is she carrying a handbag?",
+      "YES",
+      "NO",
+      "What colour are her trousers?",
+      "BLACK",
+      "BLUE",
+      "The Second Monster ",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "Does the woman have long hair?",
+      "NO",
+      "Is she wearing a jacket?",
+      "YES",
+      "NO",
+      "Is she wearing a scarf?",
+      "YES",
+      "NO",
+      "Does she have glasses on?",
+      "YES",
+      "NO",
+      "What colour is her hair?",
+      "BLONDE",
+      "BROWN",
+      "YES",
+      "Follow the arrows and answer the questions about the picture to get the second digit of the code.",
+      "Reveal Answer"
+    ],
+    "pictures": [
+      {
+        "file": "image42.png",
+        "position": {
+          "x": "7232143",
+          "y": "1590205"
+        },
+        "size": {
+          "cx": "1685087",
+          "cy": "1890311"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image43.png",
+        "position": {
+          "x": "-285448",
+          "y": "2024263"
+        },
+        "size": {
+          "cx": "1486196",
+          "cy": "4839283"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 10,
+    "text": [
+      "The Third Monster",
+      "What are these words?",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "Which word do the blue letters spell?",
+      "English",
+      "encrypt",
+      "easiest",
+      "engines",
+      "equally",
+      "Look at the pictures and say the words. The letters in blue spell out the secret word. The number next to it is the third digit of the code.",
+      "s",
+      "l",
+      "i",
+      "m",
+      "l",
+      "o",
+      "n",
+      "g",
+      "h",
+      "a",
+      "i",
+      "r",
+      "y",
+      "o",
+      "u",
+      "n",
+      "g",
+      "s",
+      "h",
+      "o",
+      "r",
+      "t",
+      "h",
+      "a",
+      "i",
+      "r",
+      "d",
+      "b",
+      "e",
+      "a",
+      "r",
+      "g",
+      "l",
+      "a",
+      "s",
+      "s",
+      "e",
+      "s",
+      "m",
+      "o",
+      "u",
+      "s",
+      "t",
+      "a",
+      "c",
+      "h",
+      "e",
+      "1",
+      "English"
+    ],
+    "pictures": [
+      {
+        "file": "image34.png",
+        "position": {
+          "x": "7404173",
+          "y": "3284351"
+        },
+        "size": {
+          "cx": "1751617",
+          "cy": "3589944"
+        },
+        "cropPercent1000": {
+          "l": "15993",
+          "t": "-335",
+          "r": "49489",
+          "b": "335"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image44.png",
+        "position": {
+          "x": "155115",
+          "y": "198765"
+        },
+        "size": {
+          "cx": "1094145",
+          "cy": "1726941"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image45.png",
+        "position": {
+          "x": "736056",
+          "y": "1605941"
+        },
+        "size": {
+          "cx": "1353527",
+          "cy": "775539"
+        },
+        "cropPercent1000": {
+          "l": "15353",
+          "t": "-660",
+          "r": "4074",
+          "b": "82362"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image46.png",
+        "position": {
+          "x": "2406883",
+          "y": "2715345"
+        },
+        "size": {
+          "cx": "492199",
+          "cy": "1448038"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image47.png",
+        "position": {
+          "x": "5056318",
+          "y": "3989659"
+        },
+        "size": {
+          "cx": "1169901",
+          "cy": "751973"
+        },
+        "cropPercent1000": {
+          "l": "-848",
+          "t": "-1290",
+          "r": "36532",
+          "b": "61671"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image48.png",
+        "position": {
+          "x": "5014694",
+          "y": "2799968"
+        },
+        "size": {
+          "cx": "1038129",
+          "cy": "733049"
+        },
+        "cropPercent1000": {
+          "l": "1274",
+          "t": "-5460",
+          "r": "-1274",
+          "b": "31966"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image49.png",
+        "position": {
+          "x": "4228876",
+          "y": "1633919"
+        },
+        "size": {
+          "cx": "648781",
+          "cy": "747561"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image50.png",
+        "position": {
+          "x": "8214210",
+          "y": "1610605"
+        },
+        "size": {
+          "cx": "695883",
+          "cy": "766209"
+        },
+        "cropPercent1000": {
+          "l": "-9738",
+          "t": "288",
+          "r": "-4056",
+          "b": "34662"
+        },
+        "flipHorizontal": true
+      },
+      {
+        "file": "image51.png",
+        "position": {
+          "x": "1534526",
+          "y": "4324193"
+        },
+        "size": {
+          "cx": "1422193",
+          "cy": "392253"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image52.png",
+        "position": {
+          "x": "6963639",
+          "y": "1369531"
+        },
+        "size": {
+          "cx": "1195189",
+          "cy": "1012680"
+        },
+        "cropPercent1000": {
+          "l": "27761",
+          "r": "7761",
+          "b": "73567"
+        },
+        "flipHorizontal": true
+      }
+    ]
+  },
+  {
+    "slide": 11,
+    "text": [
+      "The number of people in the picture who wear glasses.",
+      "The Fourth Monster",
+      "Read the sentences and say the numbers. The correct combination gives you the third digit of the code.",
+      "1",
+      "2",
+      "3",
+      "4",
+      "1224",
+      "1121",
+      "3313",
+      "1432",
+      "The number of people in the picture who have curly hair.",
+      "The number of people in the picture who have short hair.",
+      "The number of people in the picture who have blonde hair.",
+      "1",
+      "1",
+      "2",
+      "1",
+      "Reveal Answer",
+      "?",
+      "?",
+      "?",
+      "?"
+    ],
+    "pictures": [
+      {
+        "file": "image34.png",
+        "position": {
+          "x": "7404173",
+          "y": "3284351"
+        },
+        "size": {
+          "cx": "1751617",
+          "cy": "3589944"
+        },
+        "cropPercent1000": {
+          "l": "15993",
+          "t": "-335",
+          "r": "49489",
+          "b": "335"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image53.png",
+        "position": {
+          "x": "143934",
+          "y": "723792"
+        },
+        "size": {
+          "cx": "2148640",
+          "cy": "1405101"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image54.png",
+        "position": {
+          "x": "0",
+          "y": "4490938"
+        },
+        "size": {
+          "cx": "4648200",
+          "cy": "2367062"
+        },
+        "cropPercent1000": {
+          "l": "75",
+          "t": "-2168",
+          "r": "-75",
+          "b": "27022"
+        },
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 12,
+    "text": [
+      "Use the four digits you got from",
+      "completing the monsters' tasks.",
+      "Did you get the right code to escape the tower?",
+      " ",
+      "1.",
+      "2.",
+      "3.",
+      "4.",
+      "3",
+      "4",
+      "1",
+      "2",
+      "Reveal Answer"
+    ],
+    "pictures": [
+      {
+        "file": "image34.png",
+        "position": {
+          "x": "7404173",
+          "y": "3284351"
+        },
+        "size": {
+          "cx": "1751617",
+          "cy": "3589944"
+        },
+        "cropPercent1000": {
+          "l": "15993",
+          "t": "-335",
+          "r": "49489",
+          "b": "335"
+        },
+        "flipHorizontal": false
+      },
+      {
+        "file": "image55.png",
+        "position": {
+          "x": "6615550",
+          "y": "2833280"
+        },
+        "size": {
+          "cx": "1799722",
+          "cy": "1176926"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image56.png",
+        "position": {
+          "x": "1100743",
+          "y": "2508313"
+        },
+        "size": {
+          "cx": "1320856",
+          "cy": "1509903"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image57.png",
+        "position": {
+          "x": "3018862",
+          "y": "2036599"
+        },
+        "size": {
+          "cx": "1320855",
+          "cy": "1481721"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      },
+      {
+        "file": "image58.png",
+        "position": {
+          "x": "5061229",
+          "y": "2068015"
+        },
+        "size": {
+          "cx": "938781",
+          "cy": "1481721"
+        },
+        "cropPercent1000": {},
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 13,
+    "text": [
+      "You’ve escaped             \tthe tower!"
+    ],
+    "pictures": [
+      {
+        "file": "image29.png",
+        "position": {
+          "x": "6416842",
+          "y": "1268680"
+        },
+        "size": {
+          "cx": "2727158",
+          "cy": "5589320"
+        },
+        "cropPercent1000": {
+          "l": "15488",
+          "r": "49999"
+        },
+        "flipHorizontal": false
+      }
+    ]
+  },
+  {
+    "slide": 14,
+    "text": [],
+    "pictures": []
+  }
+]
