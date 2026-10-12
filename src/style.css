@@ -412,7 +412,7 @@ input {
 .landing-bottom {
   grid-column: 1/-1;
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr;
   gap: 35px;
   border-top: 1px solid var(--line);
   padding-top: 30px;

@@ -1,9 +1,3 @@
-import {
-  record,
-  hasSimpleRecording,
-  pendingRecords,
-  flushRecords,
-} from "./recording";
 import { Audio, Leaderboard, Letters, Quiz } from "./components";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
@@ -90,18 +84,8 @@ export default function App() {
     music(musicOn);
     return () => music(false);
   }, [musicOn]);
-  const [recordingPending, setRecordingPending] = useState(pendingRecords);
   useEffect(() => {
-    const update = () => setRecordingPending(pendingRecords());
-    window.addEventListener("tower-recording", update);
-    window.addEventListener("online", flushRecords);
-    const timer = setInterval(flushRecords, 30000);
-    void flushRecords();
-    return () => {
-      window.removeEventListener("tower-recording", update);
-      window.removeEventListener("online", flushRecords);
-      clearInterval(timer);
-    };
+    localStorage.removeItem("tower-sheet-records-v1");
   }, []);
   const patch = (p: Partial<State>) => setState((s) => ({ ...s, ...p }));
   const updateAttempt = (p: Partial<Attempt>) => {
@@ -120,7 +104,7 @@ export default function App() {
   };
   // Debounced progress writes are monotonic on the server and never move the start timestamp.
   useEffect(() => {
-    if (!a || a.practice || !state.token || a.end) return;
+    if (!hasBackend() || !a || a.practice || !state.token || a.end) return;
     const timer = setTimeout(() => {
       call("progress", {
         playerId: state.playerId,
@@ -204,7 +188,6 @@ export default function App() {
       token,
       stage: s.attempt && !s.attempt.end ? "escape" : "menu",
     }));
-    record({ playerId: state.playerId, name: trimmed, activity: "login" });
     setFeedback("");
     setBusy(false);
   };
@@ -322,15 +305,6 @@ export default function App() {
         return;
       }
     } else patch({ attempt: completed, stage: "result" });
-    record({
-      playerId: state.playerId,
-      name: state.name,
-      activity: "escape",
-      score: 4,
-      total: 4,
-      wrong: a.wrong,
-      elapsed: elapsed(completed),
-    });
     sound("victory");
     setResultRefresh((r) => r + 1);
     setBusy(false);
@@ -347,14 +321,6 @@ export default function App() {
       },
       stage: "menu",
       unlocked,
-    });
-    record({
-      playerId: state.playerId,
-      name: state.name,
-      activity: kind as "vocab" | "listen" | "spell",
-      score: c,
-      total: t,
-      wrong: w,
     });
     if (hasBackend() && state.token)
       call("scores", {
@@ -612,11 +578,7 @@ export default function App() {
                   </span>
                   <span>
                     <Shield size={17} />
-                    {a.practice
-                      ? hasSimpleRecording()
-                        ? "CHALLENGE 挑戰模式"
-                        : "PRACTICE MODE 練習模式"
-                      : "OFFICIAL 正式挑戰"}
+                    {a.practice ? "CHALLENGE 挑戰模式" : "OFFICIAL 正式挑戰"}
                   </span>
                   <span>
                     × {a.wrong}
@@ -691,9 +653,7 @@ export default function App() {
                               ? "Official result saved. Your next escape is practice. 正式成績已保留，接下來為密室練習。"
                               : hasBackend()
                                 ? "Your first official escape counts toward ranking. 首次正式完成將列入排名。"
-                                : hasSimpleRecording()
-                                  ? "Your login and scores will be recorded. 登入與分數會記錄到老師的試算表。"
-                                  : "Offline escape practice. Online ranking is not connected. 離線密室練習，尚未連接線上排名。"}
+                                : "Choose your challenge freely. Progress stays on this device. 自由挑戰，進度僅保留於此裝置。"}
                           </p>
                           <button
                             className="primary"
@@ -860,9 +820,7 @@ export default function App() {
                         {state.official
                           ? "Your official result is safe. This is practice. 正式成績已保留，接下來是練習模式。"
                           : !hasBackend()
-                            ? hasSimpleRecording()
-                              ? "Your challenge score will go to your teacher’s Sheet. 挑戰成績會同步到老師的試算表。"
-                              : "Practice mode · Online ranking is not connected. 練習模式：尚未連接線上排名。"
+                            ? "Challenge anytime. Your results stay on this device. 隨時挑戰，結果僅保留於此裝置。"
                             : "Your first completed official escape counts. 首次完成的正式挑戰將列入排名。"}
                       </p>
                       <button
@@ -1427,9 +1385,7 @@ export default function App() {
                       </p>
                       <span className="badge">
                         {a.practice
-                          ? hasSimpleRecording()
-                            ? "CHALLENGE RESULT · 挑戰成績"
-                            : "PRACTICE MODE · 練習成績"
+                          ? "CHALLENGE RESULT · 挑戰結果"
                           : "OFFICIAL RESULT · 正式成績"}
                       </span>
                       <div className="result-stats">
@@ -1470,14 +1426,8 @@ export default function App() {
                       </div>
                       <p className="notice">
                         {a.practice
-                          ? hasSimpleRecording()
-                            ? "Your score is queued for your teacher’s Sheet. 成績已加入同步佇列，請查看頁面下方同步狀態。"
-                            : "Practice results are not ranked. 練習成績不列入排行榜。"
+                          ? "Great adventure! You can play again anytime. 冒險完成！隨時可以再挑戰。"
                           : "Your first official result has been saved. 首次正式成績已儲存。"}
-                      </p>
-                      <p className="muted">
-                        Leaderboard position 排名：
-                        {a.practice ? "—" : (position ?? "Pending 待確認")}
                       </p>
                       <Leaderboard refresh={resultRefresh} />
                       <button
@@ -1497,13 +1447,6 @@ export default function App() {
               </AnimatePresence>
             </section>
           </main>
-        )}
-        {hasSimpleRecording() && (
-          <div className="sync-notice" role="status">
-            {recordingPending
-              ? `Records pending: ${recordingPending}. Keep this page open to sync. 尚有 ${recordingPending} 筆紀錄待同步，請保留此頁並連線。`
-              : "Records synced · 登入與成績紀錄已同步"}
-          </div>
         )}
         {syncError && (
           <div role="status" className="sync-notice">

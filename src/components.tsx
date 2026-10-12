@@ -1,4 +1,3 @@
-import { hasSimpleRecording } from "./recording";
 import { useEffect, useState } from "react";
 import { Volume2, Trophy, ArrowRight, Check } from "lucide-react";
 import { questions, shuffle, type Question } from "./data";
@@ -20,80 +19,8 @@ export function Audio({
   );
 }
 
-export function Leaderboard({ refresh = 0 }: { refresh?: number }) {
-  const [rows, setRows] = useState<Leader[]>([]),
-    [status, setStatus] = useState("Loading… 載入中");
-  useEffect(() => {
-    let live = true;
-    if (!hasBackend()) {
-      setStatus(
-        hasSimpleRecording()
-          ? "Scores go to your teacher’s Sheet. 成績由老師的試算表記錄。"
-          : "The leaderboard is resting. 線上排行榜尚未連接。",
-      );
-      return;
-    }
-    call("leaderboard")
-      .then((data) => {
-        if (live) {
-          setRows(data.entries);
-          setStatus(
-            data.entries.length
-              ? ""
-              : "Be the first tower hero! 成為第一位勇者！",
-          );
-        }
-      })
-      .catch(() => {
-        if (live)
-          setStatus(
-            "Temporarily unavailable. You can still play. 暫時無法讀取，你仍可遊玩。",
-          );
-      });
-    return () => {
-      live = false;
-    };
-  }, [refresh]);
-  if (hasSimpleRecording())
-    return (
-      <section className="leaderboard">
-        <div className="section-label">LEARNING RECORDS · 學習紀錄</div>
-        <h3>
-          Your adventure, your progress<small>每次學習，都留下進步的足跡</small>
-        </h3>
-        <p className="muted">
-          Your teacher can see login and completed scores in Google Sheets.
-          <br />
-          老師可以在試算表查看登入與完成的成績。
-        </p>
-      </section>
-    );
-  return (
-    <section className="leaderboard">
-      <div className="section-label">
-        <Trophy size={17} /> HALL OF HEROES <span>TOP 10</span>
-      </div>
-      <h3>
-        The fastest escapes <small>最快逃脫紀錄</small>
-      </h3>
-      {rows.length ? (
-        <ol>
-          {rows.map((r, i) => (
-            <li key={i}>
-              <b>{String(i + 1).padStart(2, "0")}</b>
-              <span>{r.name}</span>
-              <strong>{time(r.rankingTime)}</strong>
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <p className="muted">{status}</p>
-      )}
-      <p className="fine">
-        First official escape only · 每位玩家僅採計首次正式完成
-      </p>
-    </section>
-  );
+export function Leaderboard(_props: { refresh?: number }) {
+  return null;
 }
 export function Letters({
   word,

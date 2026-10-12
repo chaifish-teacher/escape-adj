@@ -136,7 +136,7 @@ test("login, learning, source puzzles, refresh recovery and practice completion"
   await expect(
     page.getByRole("heading", { name: /YOU ESCAPED/ }),
   ).toBeVisible();
-  await expect(page.locator(".result")).toContainText("練習成績不列入排行榜");
+  await expect(page.locator(".result")).toContainText("冒險完成！隨時可以再挑戰。");
   expect(errors).toEqual([]);
   expect(
     await page.evaluate(

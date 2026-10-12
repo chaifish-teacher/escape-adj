@@ -57,7 +57,15 @@ export function fresh(): State {
 export function load(): State {
   try {
     const s = JSON.parse(localStorage.getItem(storageKey) || "null");
-    return s?.playerId && s?.scores ? s : fresh();
+    if (!s?.playerId || !s?.scores) return fresh();
+    // Continue old challenges locally without waiting for a disabled records service.
+    delete s.token;
+    delete s.official;
+    if (s.attempt) {
+      s.attempt.practice = true;
+      delete s.attempt.pending;
+    }
+    return s;
   } catch {
     return fresh();
   }
