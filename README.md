@@ -22,6 +22,8 @@ npm run test:e2e
 
 Browser tests use `/usr/bin/chromium` in this cloud environment. On another machine update `playwright.config.ts` to your Chromium installation or install Playwright Chromium and remove `executablePath`.
 
+登入後可自由選擇練習或直接挑戰；不要求完成練習。繁體中文設定文件：[Google Sheets 成績統計設定](docs/google-sheets-setup.zh-TW.md)。
+
 ## Google Sheets and Apps Script
 
 1. Create a private Google Sheet in the teacher's account. Open Extensions → Apps Script. Paste `backend/Code.gs`.

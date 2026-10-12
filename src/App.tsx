@@ -183,12 +183,7 @@ export default function App() {
       ...s,
       name: trimmed,
       token,
-      stage:
-        s.attempt && !s.attempt.end
-          ? "escape"
-          : s.unlocked >= 4
-            ? "intro"
-            : "learn",
+      stage: s.attempt && !s.attempt.end ? "escape" : "menu",
     }));
     setFeedback("");
     setBusy(false);
@@ -312,11 +307,6 @@ export default function App() {
     setBusy(false);
   };
   const trainingDone = (kind: string, c: number, w: number, t: number) => {
-    const next: Record<string, Stage> = {
-      vocab: "listen",
-      listen: "spell",
-      spell: "intro",
-    };
     const unlocked = Math.max(
       state.unlocked,
       kind === "vocab" ? 2 : kind === "listen" ? 3 : 4,
@@ -326,7 +316,7 @@ export default function App() {
         ...state.scores,
         [kind]: { correct: c, incorrect: w, total: t },
       },
-      stage: next[kind],
+      stage: "menu",
       unlocked,
     });
     if (state.token)
@@ -514,19 +504,30 @@ export default function App() {
                 Hello, {state.name}
                 <small>準備好冒險了嗎？</small>
               </h3>
+              <button
+                className="quiet mode-home"
+                disabled={active}
+                onClick={() => patch({ stage: "menu" })}
+              >
+                Choose mode 選擇模式
+              </button>
               <nav>
                 {stageNames.map((n, i) => (
                   <button
                     key={n}
                     className={state.stage === navStages[i] ? "selected" : ""}
-                    disabled={active || i > state.unlocked}
+                    disabled={active}
                     onClick={() => {
                       patch({ stage: navStages[i] });
                       setFeedback("");
                     }}
                   >
                     <span>
-                      {i < state.unlocked ? (
+                      {(i === 0 && state.unlocked > 0) ||
+                      (i > 0 &&
+                        i < 4 &&
+                        state.scores[["", "vocab", "listen", "spell"][i]]) ||
+                      (i === 4 && state.official) ? (
                         <Check size={15} />
                       ) : (
                         String(i + 1).padStart(2, "0")
@@ -546,7 +547,6 @@ export default function App() {
                         }
                       </small>
                     </div>
-                    {i > state.unlocked && <Lock size={14} />}
                   </button>
                 ))}
               </nav>
@@ -598,6 +598,73 @@ export default function App() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.2 }}
                 >
+                  {state.stage === "menu" && (
+                    <div className="mode-menu">
+                      <div className="eyebrow">
+                        YOUR ADVENTURE, YOUR CHOICE · 自由選擇冒險
+                      </div>
+                      <h2>
+                        Practice or challenge?
+                        <small>你想練習，還是直接挑戰？</small>
+                      </h2>
+                      <p className="muted">
+                        You can enter the tower anytime. Practice is optional.
+                        <br />
+                        不必完成練習，也能直接進入密室挑戰。
+                      </p>
+                      <div className="mode-cards">
+                        <section className="mode-card">
+                          <BookOpen size={32} />
+                          <h3>Practice 練習</h3>
+                          <p>
+                            Learn at your own pace.
+                            <br />
+                            自由選擇想練習的項目，可重複練習。
+                          </p>
+                          {navStages.slice(0, 4).map((stage, i) => (
+                            <button
+                              className="stone"
+                              key={stage}
+                              onClick={() => patch({ stage })}
+                            >
+                              {
+                                [
+                                  "Vocabulary learning 單字學習",
+                                  "Vocabulary quiz 單字練習",
+                                  "Listening 聽力練習",
+                                  "Spelling 拼字練習",
+                                ][i]
+                              }
+                              <ArrowRight size={16} />
+                            </button>
+                          ))}
+                        </section>
+                        <section className="mode-card challenge-card">
+                          <Shield size={32} />
+                          <h3>Challenge 挑戰</h3>
+                          <p>
+                            Four monsters. One secret code.
+                            <br />
+                            直接挑戰四隻怪物，收集密碼逃出高塔！
+                          </p>
+                          <p className="notice">
+                            {state.official
+                              ? "Official result saved. Your next escape is practice. 正式成績已保留，接下來為密室練習。"
+                              : hasBackend()
+                                ? "Your first official escape counts toward ranking. 首次正式完成將列入排名。"
+                                : "Offline escape practice. Online ranking is not connected. 離線密室練習，尚未連接線上排名。"}
+                          </p>
+                          <button
+                            className="primary"
+                            onClick={() => patch({ stage: "intro" })}
+                          >
+                            CHALLENGE THE TOWER 挑戰高塔
+                            <ArrowRight size={18} />
+                          </button>
+                        </section>
+                      </div>
+                    </div>
+                  )}
                   {state.stage === "learn" && (
                     <>
                       <div className="eyebrow">
@@ -1344,11 +1411,14 @@ export default function App() {
                               ][i]
                             }
                             <b>
-                              {state.scores[k]?.correct ?? 0} /{" "}
-                              {state.scores[k]?.total ?? (i ? 6 : 8)}
+                              {state.scores[k]
+                                ? `${state.scores[k].correct} / ${state.scores[k].total}`
+                                : "Not practised 未練習"}
                             </b>
                             <small>
-                              Incorrect 答錯 {state.scores[k]?.incorrect ?? 0}
+                              {state.scores[k]
+                                ? `Incorrect 答錯 ${state.scores[k].incorrect}`
+                                : "—"}
                             </small>
                           </span>
                         ))}
@@ -1366,7 +1436,7 @@ export default function App() {
                       <button
                         className="primary"
                         onClick={() => {
-                          patch({ stage: "learn" });
+                          patch({ stage: "menu" });
                           setCodeInput(["", "", "", ""]);
                           setFeedback("");
                         }}

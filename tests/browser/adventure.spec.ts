@@ -15,6 +15,9 @@ test("login, learning, source puzzles, refresh recovery and practice completion"
   );
   await page.getByLabel("What should we call you?").fill("  Test Hero  ");
   await page.getByRole("button", { name: "START ADVENTURE" }).click();
+  await page
+    .getByRole("button", { name: "Vocabulary learning 單字學習" })
+    .click();
   await expect(
     page.getByRole("heading", { name: /Collect your words/ }),
   ).toBeVisible();
@@ -38,6 +41,9 @@ test("login, learning, source puzzles, refresh recovery and practice completion"
       .getByRole("button", { name: i === 7 ? "Finish 完成" : "Next 下一題" })
       .click();
   }
+  await page
+    .getByRole("button", { name: "Listening 聽力練習", exact: true })
+    .click();
   await expect(
     page.getByRole("heading", { name: /Listen closely/ }),
   ).toBeVisible();
@@ -54,6 +60,9 @@ test("login, learning, source puzzles, refresh recovery and practice completion"
       .getByRole("button", { name: i === 5 ? "Finish 完成" : "Next 下一題" })
       .click();
   }
+  await page
+    .getByRole("button", { name: "Spelling 拼字練習", exact: true })
+    .click();
   await expect(
     page.getByRole("heading", { name: /Spell your magic/ }),
   ).toBeVisible();
@@ -72,6 +81,7 @@ test("login, learning, source puzzles, refresh recovery and practice completion"
       .getByRole("button", { name: i === 5 ? "Finish 完成" : "Next 下一題" })
       .click();
   }
+  await page.getByRole("button", { name: /CHALLENGE THE TOWER/ }).click();
   await page.getByRole("button", { name: /ENTER THE TOWER/ }).click();
   await page.locator(".character-grid button").first().click();
   await expect(page.locator(".escape-hud")).toContainText("× 1");
@@ -178,6 +188,9 @@ test("audio unavailable remains playable and music can be toggled", async ({
   await page.getByRole("button", { name: "Turn music off" }).click();
   await page.getByLabel("What should we call you?").fill("Audio Hero");
   await page.getByRole("button", { name: "START ADVENTURE" }).click();
+  await page
+    .getByRole("button", { name: "Vocabulary learning 單字學習" })
+    .click();
   await page.getByRole("button", { name: "Listen to word 單字發音" }).click();
   await expect(page.getByText(/Audio unavailable. Read:/)).toHaveCount(0);
   await page.getByRole("button", { name: /I'm ready/ }).click();

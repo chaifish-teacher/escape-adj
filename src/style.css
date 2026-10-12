@@ -1653,3 +1653,50 @@ summary {
 .spelling-hints .audio {
   margin-top: 8px;
 }
+
+.mode-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+.mode-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  background: #10231b;
+}
+.mode-card > svg {
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+.mode-card h3 {
+  color: var(--gold);
+}
+.mode-card p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.mode-card .stone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-top: 12px;
+  text-align: left;
+}
+.challenge-card {
+  border-color: #8b7951;
+}
+.mode-home {
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .mode-cards {
+    grid-template-columns: 1fr;
+  }
+  .mode-home {
+    justify-content: center;
+  }
+}

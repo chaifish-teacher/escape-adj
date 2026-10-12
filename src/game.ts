@@ -1,6 +1,7 @@
 export const storageKey = "tower-adventure-v1";
 export type Stage =
   | "login"
+  | "menu"
   | "learn"
   | "vocab"
   | "listen"
