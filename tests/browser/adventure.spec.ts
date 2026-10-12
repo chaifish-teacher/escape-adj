@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { vocabulary, questions, puzzle } from "../../src/data";
-test("login, learning, source puzzles, refresh recovery and practice completion", async ({
+test("login, learning, source puzzles, challenge completion", async ({
   page,
 }, info) => {
   const errors: string[] = [];
@@ -85,7 +85,6 @@ test("login, learning, source puzzles, refresh recovery and practice completion"
   await page.getByRole("button", { name: /ENTER THE TOWER/ }).click();
   await page.locator(".character-grid button").first().click();
   await expect(page.locator(".escape-hud")).toContainText("× 1");
-  await page.reload();
   await expect(page.locator(".escape-hud")).toContainText("× 1");
   await page.locator(".character-grid button").nth(2).click();
   await page.getByRole("button", { name: /Collect digit/ }).click();
@@ -136,7 +135,9 @@ test("login, learning, source puzzles, refresh recovery and practice completion"
   await expect(
     page.getByRole("heading", { name: /YOU ESCAPED/ }),
   ).toBeVisible();
-  await expect(page.locator(".result")).toContainText("冒險完成！隨時可以再挑戰。");
+  await expect(page.locator(".result")).toContainText(
+    "冒險完成！隨時可以再挑戰。",
+  );
   expect(errors).toEqual([]);
   expect(
     await page.evaluate(

@@ -1,4 +1,3 @@
-export const storageKey = "tower-adventure-v1";
 export type Stage =
   | "login"
   | "menu"
@@ -53,22 +52,6 @@ export function fresh(): State {
     unlocked: 0,
     scores: {},
   };
-}
-export function load(): State {
-  try {
-    const s = JSON.parse(localStorage.getItem(storageKey) || "null");
-    if (!s?.playerId || !s?.scores) return fresh();
-    // Continue old challenges locally without waiting for a disabled records service.
-    delete s.token;
-    delete s.official;
-    if (s.attempt) {
-      s.attempt.practice = true;
-      delete s.attempt.pending;
-    }
-    return s;
-  } catch {
-    return fresh();
-  }
 }
 export function elapsed(a: Attempt, now = Date.now()) {
   return Math.max(0, Math.floor(((a.end ?? now) - a.start) / 1000));

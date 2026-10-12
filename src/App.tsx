@@ -35,8 +35,7 @@ import {
   type Question,
 } from "./data";
 import {
-  load,
-  storageKey,
+  fresh,
   emptyProgress,
   elapsed,
   ranking,
@@ -55,7 +54,7 @@ const stageNames = [
   "Enter the tower",
 ];
 export default function App() {
-  const [state, setState] = useState<State>(load),
+  const [state, setState] = useState<State>(fresh),
     [name, setName] = useState(state.name),
     [wordIndex, setWordIndex] = useState(0),
     [category, setCategory] = useState("all"),
@@ -74,9 +73,6 @@ export default function App() {
   const a = state.attempt;
   const active = state.stage === "escape";
   useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify(state));
-  }, [state]);
-  useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(t);
   }, []);
@@ -85,7 +81,13 @@ export default function App() {
     return () => music(false);
   }, [musicOn]);
   useEffect(() => {
-    localStorage.removeItem("tower-sheet-records-v1");
+    // Delete only this game's old saved data; the current game stays in memory.
+    try {
+      localStorage.removeItem("tower-adventure-v1");
+      localStorage.removeItem("tower-sheet-records-v1");
+    } catch {
+      /* Storage may be unavailable; gameplay needs no storage. */
+    }
   }, []);
   const patch = (p: Partial<State>) => setState((s) => ({ ...s, ...p }));
   const updateAttempt = (p: Partial<Attempt>) => {
@@ -653,7 +655,7 @@ export default function App() {
                               ? "Official result saved. Your next escape is practice. 正式成績已保留，接下來為密室練習。"
                               : hasBackend()
                                 ? "Your first official escape counts toward ranking. 首次正式完成將列入排名。"
-                                : "Choose your challenge freely. Progress stays on this device. 自由挑戰，進度僅保留於此裝置。"}
+                                : "Choose your challenge freely. Refreshing starts a new adventure. 自由挑戰，重新整理會開始新的冒險。"}
                           </p>
                           <button
                             className="primary"
@@ -820,7 +822,7 @@ export default function App() {
                         {state.official
                           ? "Your official result is safe. This is practice. 正式成績已保留，接下來是練習模式。"
                           : !hasBackend()
-                            ? "Challenge anytime. Your results stay on this device. 隨時挑戰，結果僅保留於此裝置。"
+                            ? "Challenge anytime. Progress is not saved. 隨時挑戰，遊戲進度不會儲存。"
                             : "Your first completed official escape counts. 首次完成的正式挑戰將列入排名。"}
                       </p>
                       <button
