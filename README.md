@@ -24,7 +24,13 @@ Browser tests use `/usr/bin/chromium` in this cloud environment. On another mach
 
 登入後可自由選擇練習或直接挑戰；不要求完成練習。繁體中文設定文件：[Google Sheets 成績統計設定](docs/google-sheets-setup.zh-TW.md)。
 
-## Google Sheets and Apps Script
+## 最簡單的登入／成績紀錄（推薦）
+
+使用 [backend/SimpleRecords.gs](backend/SimpleRecords.gs)，在新的 Google Sheet 執行 `setupRecords()`，部署為任何人可存取的網頁應用程式。將 `/exec` 網址填入 `src/recording-config.ts` 後重新建置即可。沒有網址前不會上傳紀錄。不需要密鑰或 Vercel 環境變數。此模式記錄每次登入與每次活動成績，不提供正式排行榜。
+
+完整步驟與九個自動建立的欄位：[簡化設定文件](docs/simple-google-sheets.zh-TW.md)。不要同時貼入 SimpleRecords.gs 和下方進階版 GAS。
+
+## Google Sheets and Apps Script（進階版，非簡化模式）
 
 1. Create a private Google Sheet in the teacher's account. Open Extensions → Apps Script. Paste `backend/Code.gs`.
 2. In Apps Script Project Settings → Script Properties, add `SPREADSHEET_ID` (the Sheet ID from its URL) and `PROXY_SECRET` (a new long random secret). Never put either in frontend source or chat.

@@ -1,14 +1,15 @@
+import { hasSimpleRecording } from "./recording";
 export type Leader = { name: string; rankingTime: number; actualTime: number };
 const enabled = import.meta.env.VITE_BACKEND_ENABLED === "true";
 export function hasBackend() {
-  return enabled;
+  return enabled && !hasSimpleRecording();
 }
 export async function call(
   action: string,
   payload: Record<string, unknown> = {},
   requestId: string = crypto.randomUUID(),
 ): Promise<any> {
-  if (!enabled)
+  if (!hasBackend())
     throw new Error(
       "Practice only — online records are not connected. 練習模式：尚未連接線上紀錄。",
     );

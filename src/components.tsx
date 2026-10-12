@@ -1,3 +1,4 @@
+import { hasSimpleRecording } from "./recording";
 import { useEffect, useState } from "react";
 import { Volume2, Trophy, ArrowRight, Check } from "lucide-react";
 import { questions, shuffle, type Question } from "./data";
@@ -25,7 +26,11 @@ export function Leaderboard({ refresh = 0 }: { refresh?: number }) {
   useEffect(() => {
     let live = true;
     if (!hasBackend()) {
-      setStatus("The leaderboard is resting. 線上排行榜尚未連接。");
+      setStatus(
+        hasSimpleRecording()
+          ? "Scores go to your teacher’s Sheet. 成績由老師的試算表記錄。"
+          : "The leaderboard is resting. 線上排行榜尚未連接。",
+      );
       return;
     }
     call("leaderboard")
@@ -49,6 +54,20 @@ export function Leaderboard({ refresh = 0 }: { refresh?: number }) {
       live = false;
     };
   }, [refresh]);
+  if (hasSimpleRecording())
+    return (
+      <section className="leaderboard">
+        <div className="section-label">LEARNING RECORDS · 學習紀錄</div>
+        <h3>
+          Your adventure, your progress<small>每次學習，都留下進步的足跡</small>
+        </h3>
+        <p className="muted">
+          Your teacher can see login and completed scores in Google Sheets.
+          <br />
+          老師可以在試算表查看登入與完成的成績。
+        </p>
+      </section>
+    );
   return (
     <section className="leaderboard">
       <div className="section-label">
