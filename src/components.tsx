@@ -112,7 +112,7 @@ export function SpellingHints({
 }) {
   const parts = word.split(" ");
   const [revealed, setRevealed] = useState(() => parts.map(() => 1));
-  const nextPart = parts.findIndex((part, i) => revealed[i] < part.length - 1);
+  const nextPart = parts.findIndex((part, i) => revealed[i] < part.length);
   return (
     <div className="notice spelling-hints">
       <p>
@@ -154,15 +154,21 @@ export function SpellingHints({
       <div className="actions">
         <Audio text={word} label="Listen to the word 聽單字發音" />
         <button
+          type="button"
           className="stone"
           disabled={nextPart < 0}
           onClick={() =>
-            setRevealed((counts) =>
-              counts.map((n, i) => (i === nextPart ? n + 1 : n)),
-            )
+            setRevealed((counts) => {
+              const next = parts.findIndex(
+                (part, i) => counts[i] < part.length,
+              );
+              return counts.map((n, i) => (i === next ? n + 1 : n));
+            })
           }
         >
-          Show next letter 顯示下一個字母
+          {nextPart < 0
+            ? "All letters shown 全部字母已顯示"
+            : "Show next letter 顯示下一個字母"}
         </button>
       </div>
     </div>
