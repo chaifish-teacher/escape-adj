@@ -48,6 +48,32 @@ export function Letters({
     setChosen(n);
     onChange?.(n);
   };
+  const [hintsUsed, setHintsUsed] = useState(0);
+  const [hinted, setHinted] = useState<number[]>([]);
+  const answer = word.replaceAll(" ", "");
+  const nextHint = answer
+    .split("")
+    .findIndex(
+      (letter, i) => chosen[i] === undefined || answer[chosen[i]] !== letter,
+    );
+  const giveHint = () => {
+    if (hintsUsed >= 2 || nextHint < 0) return;
+    const tile =
+      tiles.find(
+        (t) => t.letter === answer[nextHint] && !chosen.includes(t.id),
+      ) ??
+      tiles.find(
+        (t) => t.letter === answer[nextHint] && chosen.indexOf(t.id) > nextHint,
+      );
+    if (!tile) return;
+    const next = [...chosen];
+    const oldPosition = next.indexOf(tile.id);
+    if (oldPosition >= 0) next[oldPosition] = next[nextHint];
+    next[nextHint] = tile.id;
+    update(next);
+    setHinted((indices) => [...indices, nextHint]);
+    setHintsUsed((n) => n + 1);
+  };
   let position = 0;
   return (
     <div className="letter-game">
@@ -58,7 +84,12 @@ export function Letters({
               const index = position++;
               return (
                 <span
-                  className={highlight === index ? "blue-letter" : ""}
+                  className={[
+                    highlight === index ? "blue-letter" : "",
+                    hinted.includes(index) ? "hint-letter" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
                   key={i}
                 >
                   {chosen[index] === undefined
@@ -69,6 +100,25 @@ export function Letters({
             })}
           </div>
         ))}
+      </div>
+      <div className="answer-hints">
+        <button
+          type="button"
+          className="stone"
+          disabled={hintsUsed >= 2 || nextHint < 0}
+          onClick={giveHint}
+        >
+          {hintsUsed >= 2
+            ? "Hints used up 提示次數已用完"
+            : nextHint < 0
+              ? "Answer complete 答案已填好"
+              : "Show next letter 顯示下一個字母"}
+        </button>
+        <p aria-live="polite">Hints left 剩餘提示次數：{2 - hintsUsed} / 2</p>
+        <small>
+          Hints fill the answer boxes.
+          提示直接填入答案格；若有錯字，先修正第一個錯字。
+        </small>
       </div>
       <div className="letter-bank">
         {tiles.map((t) => (
@@ -111,10 +161,6 @@ export function SpellingHints({
   example: string;
 }) {
   const parts = word.split(" ");
-  const [revealed, setRevealed] = useState(() => parts.map(() => 1));
-  const nextPart = parts.findIndex((part, i) => revealed[i] < part.length);
-  const hintsUsed = revealed.reduce((sum, count) => sum + count - 1, 0);
-  const hintsLeft = Math.max(0, 2 - hintsUsed);
   return (
     <div className="notice spelling-hints">
       <p>
@@ -130,9 +176,7 @@ export function SpellingHints({
         <span className="spelling-shape" aria-live="polite">
           {parts
             .map(
-              (part, i) =>
-                part.slice(0, revealed[i]).toUpperCase() +
-                " _".repeat(part.length - revealed[i]),
+              (part, i) => part[0].toUpperCase() + " _".repeat(part.length - 1),
             )
             .join("   /   ")}
         </span>
@@ -151,34 +195,10 @@ export function SpellingHints({
       </p>
       <p className="muted">
         Listen, then tap the letters in order.
-        先聽發音，再依序點選字母。需要幫忙時，可以多看一個字母。
-      </p>
-      <p aria-live="polite">
-        Hints left 剩餘提示次數：{hintsLeft} / 2（每題最多兩次）
+        先聽發音，再依序點選字母。需要幫忙時，按答案區的提示按鈕。
       </p>
       <div className="actions">
         <Audio text={word} label="Listen to the word 聽單字發音" />
-        <button
-          type="button"
-          className="stone"
-          disabled={nextPart < 0 || hintsLeft === 0}
-          onClick={() =>
-            setRevealed((counts) => {
-              if (counts.reduce((sum, count) => sum + count - 1, 0) >= 2)
-                return counts;
-              const next = parts.findIndex(
-                (part, i) => counts[i] < part.length,
-              );
-              return counts.map((n, i) => (i === next ? n + 1 : n));
-            })
-          }
-        >
-          {nextPart < 0
-            ? "All letters shown 全部字母已顯示"
-            : hintsLeft === 0
-              ? "Hints used up 提示次數已用完"
-              : "Show next letter 顯示下一個字母"}
-        </button>
       </div>
     </div>
   );
