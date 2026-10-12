@@ -257,7 +257,40 @@ export function Quiz({
         <h3 className="prompt-word">{q.target.word}</h3>
       )}
       {kind === "spell" ? (
-        <Letters key={index} word={q.target.word} onSubmit={choose} />
+        <>
+          <div className="notice spelling-hints">
+            <p>
+              <strong>Meaning 意思：</strong>
+              {q.target.zh}
+            </p>
+            <p>
+              <strong>First letter 首字母：</strong>
+              {q.target.word
+                .split(" ")
+                .map((part) => part[0].toUpperCase())
+                .join(" / ")}
+            </p>
+            <p>
+              <strong>Word shape 字母提示：</strong>
+              <span className="spelling-shape">
+                {q.target.word
+                  .split(" ")
+                  .map(
+                    (part) =>
+                      part[0].toUpperCase() + " _".repeat(part.length - 1),
+                  )
+                  .join("   /   ")}
+              </span>
+            </p>
+            <p>
+              {q.target.word.split(" ").length > 1
+                ? `This phrase has ${q.target.word.split(" ").length} words. 這個片語有 ${q.target.word.split(" ").length} 個詞。`
+                : `This word has ${q.target.word.length} letters. 這個單字有 ${q.target.word.length} 個字母。`}
+            </p>
+            <Audio text={q.target.word} label="Listen to the word 聽單字發音" />
+          </div>
+          <Letters key={index} word={q.target.word} onSubmit={choose} />
+        </>
       ) : (
         <div className="choice-grid">
           {q.options.map((w, i) => (

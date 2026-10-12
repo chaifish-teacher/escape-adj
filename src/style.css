@@ -1635,3 +1635,21 @@ summary {
     scroll-behavior: auto !important;
   }
 }
+
+.spelling-hints {
+  text-align: left;
+  margin: 20px 0;
+}
+.spelling-hints p {
+  margin: 8px 0;
+}
+.spelling-shape {
+  display: inline-block;
+  font-weight: bold;
+  color: var(--gold);
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+}
+.spelling-hints .audio {
+  margin-top: 8px;
+}
