@@ -101,6 +101,73 @@ export function Letters({
     </div>
   );
 }
+export function SpellingHints({
+  word,
+  zh,
+  example,
+}: {
+  word: string;
+  zh: string;
+  example: string;
+}) {
+  const parts = word.split(" ");
+  const [revealed, setRevealed] = useState(() => parts.map(() => 1));
+  const nextPart = parts.findIndex((part, i) => revealed[i] < part.length - 1);
+  return (
+    <div className="notice spelling-hints">
+      <p>
+        <strong>Meaning 意思：</strong>
+        {zh}
+      </p>
+      <p>
+        <strong>First letter 首字母：</strong>
+        {parts.map((part) => part[0].toUpperCase()).join(" / ")}
+      </p>
+      <p>
+        <strong>Word shape 字母提示：</strong>
+        <span className="spelling-shape" aria-live="polite">
+          {parts
+            .map(
+              (part, i) =>
+                part.slice(0, revealed[i]).toUpperCase() +
+                " _".repeat(part.length - revealed[i]),
+            )
+            .join("   /   ")}
+        </span>
+      </p>
+      <p>
+        {parts
+          .map(
+            (part, i) =>
+              `Word ${i + 1}: ${part.length} letters 第 ${i + 1} 個詞：${part.length} 個字母`,
+          )
+          .join(" · ")}
+      </p>
+      <p>
+        <strong>Sentence clue 例句提示：</strong>
+        {example.replace(new RegExp(word, "gi"), "_____ ")}
+      </p>
+      <p className="muted">
+        Listen, then tap the letters in order.
+        先聽發音，再依序點選字母。需要幫忙時，可以多看一個字母。
+      </p>
+      <div className="actions">
+        <Audio text={word} label="Listen to the word 聽單字發音" />
+        <button
+          className="stone"
+          disabled={nextPart < 0}
+          onClick={() =>
+            setRevealed((counts) =>
+              counts.map((n, i) => (i === nextPart ? n + 1 : n)),
+            )
+          }
+        >
+          Show next letter 顯示下一個字母
+        </button>
+      </div>
+    </div>
+  );
+}
 export function Quiz({
   kind,
   onDone,
@@ -204,37 +271,12 @@ export function Quiz({
       )}
       {kind === "spell" ? (
         <>
-          <div className="notice spelling-hints">
-            <p>
-              <strong>Meaning 意思：</strong>
-              {q.target.zh}
-            </p>
-            <p>
-              <strong>First letter 首字母：</strong>
-              {q.target.word
-                .split(" ")
-                .map((part) => part[0].toUpperCase())
-                .join(" / ")}
-            </p>
-            <p>
-              <strong>Word shape 字母提示：</strong>
-              <span className="spelling-shape">
-                {q.target.word
-                  .split(" ")
-                  .map(
-                    (part) =>
-                      part[0].toUpperCase() + " _".repeat(part.length - 1),
-                  )
-                  .join("   /   ")}
-              </span>
-            </p>
-            <p>
-              {q.target.word.split(" ").length > 1
-                ? `This phrase has ${q.target.word.split(" ").length} words. 這個片語有 ${q.target.word.split(" ").length} 個詞。`
-                : `This word has ${q.target.word.length} letters. 這個單字有 ${q.target.word.length} 個字母。`}
-            </p>
-            <Audio text={q.target.word} label="Listen to the word 聽單字發音" />
-          </div>
+          <SpellingHints
+            key={index}
+            word={q.target.word}
+            zh={q.target.zh}
+            example={q.target.example}
+          />
           <Letters key={index} word={q.target.word} onSubmit={choose} />
         </>
       ) : (

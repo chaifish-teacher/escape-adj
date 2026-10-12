@@ -1,4 +1,4 @@
-import { Audio, Leaderboard, Letters, Quiz } from "./components";
+import { Audio, Leaderboard, Letters, Quiz, SpellingHints } from "./components";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import {
@@ -1047,6 +1047,24 @@ export default function App() {
                                     alt={`Original word puzzle picture ${a.progress.puzzleIndex + 1}`}
                                   />
                                 </div>
+                                <SpellingHints
+                                  key={`hint-${a.progress.puzzleIndex}`}
+                                  word={puzzle[a.progress.puzzleIndex].word}
+                                  zh={
+                                    vocabulary.find(
+                                      (w) =>
+                                        w.word ===
+                                        puzzle[a.progress.puzzleIndex].word,
+                                    )!.zh
+                                  }
+                                  example={
+                                    vocabulary.find(
+                                      (w) =>
+                                        w.word ===
+                                        puzzle[a.progress.puzzleIndex].word,
+                                    )!.example
+                                  }
+                                />
                                 <Letters
                                   key={a.progress.puzzleIndex}
                                   initial={letters}
