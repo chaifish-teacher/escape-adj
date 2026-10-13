@@ -51,28 +51,24 @@ export function Letters({
   const [hintsUsed, setHintsUsed] = useState(0);
   const [hinted, setHinted] = useState<number[]>([]);
   const answer = word.replaceAll(" ", "");
-  const nextHint = answer
-    .split("")
-    .findIndex(
-      (letter, i) => chosen[i] === undefined || answer[chosen[i]] !== letter,
-    );
+  const nextHint = chosen.length;
+  const canHint = hintsUsed < 2 && nextHint < answer.length - 1;
+  const [hintMessage, setHintMessage] = useState("");
   const giveHint = () => {
-    if (hintsUsed >= 2 || nextHint < 0) return;
-    const tile =
-      tiles.find(
-        (t) => t.letter === answer[nextHint] && !chosen.includes(t.id),
-      ) ??
-      tiles.find(
-        (t) => t.letter === answer[nextHint] && chosen.indexOf(t.id) > nextHint,
+    if (!canHint) return;
+    const tile = tiles.find(
+      (t) => t.letter === answer[nextHint] && !chosen.includes(t.id),
+    );
+    if (!tile) {
+      setHintMessage(
+        "Undo or reset misplaced letters first. 請先復原或重設錯放的字母，再使用提示。",
       );
-    if (!tile) return;
-    const next = [...chosen];
-    const oldPosition = next.indexOf(tile.id);
-    if (oldPosition >= 0) next[oldPosition] = next[nextHint];
-    next[nextHint] = tile.id;
-    update(next);
+      return;
+    }
+    update([...chosen, tile.id]);
     setHinted((indices) => [...indices, nextHint]);
     setHintsUsed((n) => n + 1);
+    setHintMessage("");
   };
   let position = 0;
   return (
@@ -105,21 +101,26 @@ export function Letters({
         <button
           type="button"
           className="stone"
-          disabled={hintsUsed >= 2 || nextHint < 0}
+          disabled={!canHint}
           onClick={giveHint}
         >
           {hintsUsed >= 2
             ? "Hints used up 提示次數已用完"
-            : nextHint < 0
-              ? "Answer complete 答案已填好"
+            : nextHint >= answer.length - 1
+              ? "Finish it yourself 請自行完成最後一格"
               : "Show next letter 顯示下一個字母"}
         </button>
         <p aria-live="polite">Hints left 剩餘提示次數：{2 - hintsUsed} / 2</p>
         <small>
           Hints fill the answer boxes.
-          提示直接填入答案格；若有錯字，先修正第一個錯字。
+          提示只填下一個空格。最後一格請自行填寫，再按「檢查」。
         </small>
       </div>
+      {hintMessage && (
+        <p role="status" className="feedback">
+          {hintMessage}
+        </p>
+      )}
       <div className="letter-bank">
         {tiles.map((t) => (
           <button
@@ -139,6 +140,7 @@ export function Letters({
           Reset 重設
         </button>
         <button
+          type="button"
           className="primary"
           disabled={chosen.length !== tiles.length}
           onClick={() =>
@@ -312,7 +314,14 @@ export function Quiz({
             zh={q.target.zh}
             example={q.target.example}
           />
-          <Letters key={index} word={q.target.word} onSubmit={choose} />
+          <Letters
+            key={index}
+            word={q.target.word}
+            onChange={() => {
+              if (!resolved) setFeedback("");
+            }}
+            onSubmit={choose}
+          />
         </>
       ) : (
         <div className="choice-grid">

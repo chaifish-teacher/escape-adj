@@ -1073,6 +1073,7 @@ export default function App() {
                                     puzzle[a.progress.puzzleIndex].highlight
                                   }
                                   onChange={(selected) => {
+                                    setFeedback("");
                                     setLetters(selected);
                                     updateAttempt({
                                       progress: {
@@ -1094,7 +1095,7 @@ export default function App() {
                                         },
                                       });
                                       setLetters([]);
-                                      setFeedback("Word unlocked! 單字解鎖！");
+                                      setFeedback("");
                                     } else wrong();
                                   }}
                                 />
